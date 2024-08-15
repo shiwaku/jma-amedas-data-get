@@ -23,12 +23,12 @@ jobs:
 
       - name: JSONをCSVとGeoJSONに変換するスクリプトを実行
         run: |
-          python convert_json_to_csv.py
+          python amedastable-get.py
 
       - name: 変更をコミットしてプッシュ
         run: |
           git config --local user.email "y.shiwaku.5519@gmail.com"
-          git config --local user.name "shi-works"
+          git config --local user.name "shiwaku"
           git add amedastable.csv amedastable.geojson
           git status  # 状態を確認
           git commit -m "Update CSV and GeoJSON files from JSON"
