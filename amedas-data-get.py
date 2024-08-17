@@ -8,7 +8,9 @@ amedas_df = pd.read_csv('amedastable.csv', encoding='utf-8')
 
 # 気象データのURL
 wind_speed_url = 'https://www.data.jma.go.jp/stats/data/mdrr/wind_rct/alltable/mxwsp00_rct.csv'
-temperature_url = 'https://www.data.jma.go.jp/stats/data/mdrr/tem_rct/alltable/mxtemsadext00_rct.csv'# 気象データを読み込み、品質情報を文字列として読み込む
+temperature_url = 'https://www.data.jma.go.jp/stats/data/mdrr/tem_rct/alltable/mxtemsadext00_rct.csv'
+
+# 気象データを読み込み、品質情報を文字列として読み込む
 wind_speed_df = pd.read_csv(wind_speed_url, encoding='shift-jis', dtype={'17日の最大値の品質情報': str, '17日の最大値観測時の風向の品質情報': str})
 temperature_df = pd.read_csv(temperature_url, encoding='shift-jis', dtype={'17日の最高気温の品質情報': str})
 
@@ -26,8 +28,12 @@ wind_speed_df['現在時刻'] = concatenate_datetime(wind_speed_df, '現在時�
 temperature_df['現在時刻'] = concatenate_datetime(temperature_df, '現在時刻(年)', '現在時刻(月)', '現在時刻(日)', '現在時刻(時)', '現在時刻(分)')
 
 # マージ前に最大風速と最高気温の現在時刻を取得
-common_timestamp = wind_speed_df['現在時刻'].iloc[0]  # 最大風速と最高気温の時刻は同じと仮定# 対応する降水量データのURLを生成
-precipitation_url = f'https://www.data.jma.go.jp/stats/data/mdrr/pre_rct/alltable/pre1h00_{common_timestamp.strftime("%Y%m%d%H%M")}.csv'# 降水量データを取得
+common_timestamp = wind_speed_df['現在時刻'].iloc[0]  # 最大風速と最高気温の時刻は同じと仮定
+
+# 対応する降水量データのURLを生成
+precipitation_url = f'https://www.data.jma.go.jp/stats/data/mdrr/pre_rct/alltable/pre1h00_{common_timestamp.strftime("%Y%m%d%H%M")}.csv'
+
+# 降水量データを取得
 response = requests.get(precipitation_url)
 precipitation_df = pd.read_csv(StringIO(response.content.decode('shift-jis')), dtype={'現在値の品質情報': str})
 
@@ -65,14 +71,14 @@ merged_df.rename(columns={
     '17日の最高気温の品質情報': '最高気温の品質情報'
 }, inplace=True)
 
-# 結果を新しいCSVファイルに保存
-merged_df.to_csv('amedas-data.csv', index=False, encoding='utf-8')
-
 # CSVからGeoJSONを生成する
 features = []
 for _, row in merged_df.iterrows():
     # TimestampをISOフォーマットの文字列に変換
     row['現在時刻'] = row['現在時刻'].isoformat()
+    
+    # すべての値を文字列として処理
+    properties = {k: str(v) if pd.notna(v) else None for k, v in row.drop(['lat', 'lon']).to_dict().items()}
     
     feature = {
         "type": "Feature",
@@ -80,7 +86,7 @@ for _, row in merged_df.iterrows():
             "type": "Point",
             "coordinates": [row['lon'], row['lat']]
         },
-        "properties": row.drop(['lat', 'lon']).to_dict()
+        "properties": properties
     }
     features.append(feature)
 

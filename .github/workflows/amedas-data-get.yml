@@ -1,4 +1,4 @@
-name: Convert JSON to CSV and GeoJSON
+name: Amedas-Data Convert JSON to CSV and GeoJSON
 
 on:
   schedule:
@@ -20,6 +20,7 @@ jobs:
           
       - name: Install Python dependencies
         run: pip install requests
+        run: pip install pandas
 
       - name: JSONをCSVとGeoJSONに変換するスクリプトを実行
         run: |
