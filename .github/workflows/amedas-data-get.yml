@@ -1,4 +1,4 @@
-name: Amedas-Data Convert JSON to CSV and GeoJSON
+name: Amedas-Data Convert CSV to GeoJSON
 
 on:
   schedule:
