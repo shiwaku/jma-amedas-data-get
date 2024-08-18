@@ -11,13 +11,32 @@ wind_speed_url = 'https://www.data.jma.go.jp/stats/data/mdrr/wind_rct/alltable/m
 temperature_url = 'https://www.data.jma.go.jp/stats/data/mdrr/tem_rct/alltable/mxtemsadext00_rct.csv'
 
 # 気象データを読み込み、品質情報を文字列として読み込む
-wind_speed_df = pd.read_csv(wind_speed_url, encoding='shift-jis', dtype={'17日の最大値の品質情報': str, '17日の最大値観測時の風向の品質情報': str})
-temperature_df = pd.read_csv(temperature_url, encoding='shift-jis', dtype={'17日の最高気温の品質情報': str})
+wind_speed_df = pd.read_csv(wind_speed_url, encoding='shift-jis', dtype={
+    '最大値の品質情報': str, 
+    '最大値観測時の風向の品質情報': str
+})
+temperature_df = pd.read_csv(temperature_url, encoding='shift-jis', dtype={
+    '最高気温の品質情報': str
+})
+
+# 日付に基づく列名を動的に取得
+max_wind_speed_col = [col for col in wind_speed_df.columns if '最大値(m/s)' in col][0]
+max_wind_quality_col = [col for col in wind_speed_df.columns if '最大値の品質情報' in col][0]
+wind_direction_col = [col for col in wind_speed_df.columns if '最大値観測時の風向' in col][0]
+wind_direction_quality_col = [col for col in wind_speed_df.columns if '最大値観測時の風向の品質情報' in col][0]
+
+max_temp_col = [col for col in temperature_df.columns if '最高気温(℃)' in col][0]
+max_temp_quality_col = [col for col in temperature_df.columns if '最高気温の品質情報' in col][0]
 
 # データ型を統一し、余分なスペースを削除
 amedas_df['AmeCode'] = amedas_df['AmeCode'].astype(str).str.strip()
 wind_speed_df['観測所番号'] = wind_speed_df['観測所番号'].astype(str).str.strip()
 temperature_df['観測所番号'] = temperature_df['観測所番号'].astype(str).str.strip()
+
+# 品質情報の列を文字列型に変換
+wind_speed_df[max_wind_quality_col] = wind_speed_df[max_wind_quality_col].astype(str)
+wind_speed_df[wind_direction_quality_col] = wind_speed_df[wind_direction_quality_col].astype(str)
+temperature_df[max_temp_quality_col] = temperature_df[max_temp_quality_col].astype(str)
 
 # 日時の列を結合するための関数
 def concatenate_datetime(df, year_col, month_col, day_col, hour_col, minute_col):
@@ -45,8 +64,8 @@ precipitation_df['現在時刻'] = concatenate_datetime(precipitation_df, '現�
 
 # 必要な列を選択し、アメダス観測所一覧に結合
 precipitation_merge_cols = ['観測所番号', '現在時刻', '現在値(mm)', '現在値の品質情報']
-wind_speed_merge_cols = ['観測所番号', '現在時刻', '17日の最大値(m/s)', '17日の最大値の品質情報', '17日の最大値観測時の風向', '17日の最大値観測時の風向の品質情報']
-temperature_merge_cols = ['観測所番号', '現在時刻', '17日の最高気温(℃)', '17日の最高気温の品質情報']
+wind_speed_merge_cols = ['観測所番号', '現在時刻', max_wind_speed_col, max_wind_quality_col, wind_direction_col, wind_direction_quality_col]
+temperature_merge_cols = ['観測所番号', '現在時刻', max_temp_col, max_temp_quality_col]
 
 # マージの実行
 merged_df = amedas_df.merge(precipitation_df[precipitation_merge_cols], left_on='AmeCode', right_on='観測所番号', how='left')
@@ -63,13 +82,16 @@ merged_df.rename(columns={
     '現在時刻_precipitation': '現在時刻',
     '現在値(mm)': '1時間降水量_現在値(mm)',
     '現在値の品質情報': '1時間降水量_現在値の品質情報',
-    '17日の最大値(m/s)': '最大風速(m/s)',
-    '17日の最大値の品質情報': '最大風速の品質情報',
-    '17日の最大値観測時の風向': '最大風速観測時の風向',
-    '17日の最大値観測時の風向の品質情報': '最大風速観測時の風向の品質情報',
-    '17日の最高気温(℃)': '最高気温(℃)',
-    '17日の最高気温の品質情報': '最高気温の品質情報'
+    max_wind_speed_col: '最大風速(m/s)',
+    max_wind_quality_col: '最大風速の品質情報',
+    wind_direction_col: '最大風速観測時の風向',
+    wind_direction_quality_col: '最大風速観測時の風向の品質情報',
+    max_temp_col: '最高気温(℃)',
+    max_temp_quality_col: '最高気温の品質情報'
 }, inplace=True)
+
+# 結果を新しいCSVファイルに保存
+merged_df.to_csv('amedas-data.csv', index=False, encoding='utf-8')
 
 # CSVからGeoJSONを生成する
 features = []
