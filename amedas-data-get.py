@@ -79,15 +79,15 @@ merged_df.drop(columns=columns_to_drop, inplace=True)
 
 # 列名の変更
 merged_df.rename(columns={
-    '現在時刻_precipitation': '現在時刻',
-    '現在値(mm)': '1時間降水量_現在値(mm)',
-    '現在値の品質情報': '1時間降水量_現在値の品質情報',
-    max_wind_speed_col: '最大風速(m/s)',
-    max_wind_quality_col: '最大風速の品質情報',
-    wind_direction_col: '最大風速観測時の風向',
-    wind_direction_quality_col: '最大風速観測時の風向の品質情報',
-    max_temp_col: '最高気温(℃)',
-    max_temp_quality_col: '最高気温の品質情報'
+    '現在時刻_precipitation': 'time',
+    '現在値(mm)': 'rain_1h_mm',
+    '現在値の品質情報': 'rain_qual',
+    max_wind_speed_col: 'wind_max_ms',
+    max_wind_quality_col: 'wind_qual',
+    wind_direction_col: 'wind_dir',
+    wind_direction_quality_col: 'wind_dir_qual',
+    max_temp_col: 'temp_max_c',
+    max_temp_quality_col: 'temp_qual'
 }, inplace=True)
 
 # 結果を新しいCSVファイルに保存
@@ -97,7 +97,7 @@ merged_df.to_csv('amedas-data.csv', index=False, encoding='utf-8')
 features = []
 for _, row in merged_df.iterrows():
     # TimestampをISOフォーマットの文字列に変換
-    row['現在時刻'] = row['現在時刻'].isoformat()
+    row['time'] = row['time'].isoformat()
     
     # プロパティを生成。数値はそのまま、文字列のみstr()で変換。
     properties = {}
