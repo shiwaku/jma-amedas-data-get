@@ -99,8 +99,13 @@ for _, row in merged_df.iterrows():
     # TimestampをISOフォーマットの文字列に変換
     row['現在時刻'] = row['現在時刻'].isoformat()
     
-    # すべての値を文字列として処理
-    properties = {k: str(v) if pd.notna(v) else None for k, v in row.drop(['lat', 'lon']).to_dict().items()}
+    # プロパティを生成。数値はそのまま、文字列のみstr()で変換。
+    properties = {}
+    for k, v in row.drop(['lat', 'lon']).items():
+        if isinstance(v, (int, float)) and pd.notna(v):
+            properties[k] = v
+        else:
+            properties[k] = str(v) if pd.notna(v) else None
     
     feature = {
         "type": "Feature",
