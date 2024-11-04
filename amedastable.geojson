@@ -3984,7 +3984,7 @@
       "properties": {
         "AmeCode": "23226",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 25,
         "kjName": "北斗",
         "knName": "ホクト",
@@ -4250,7 +4250,7 @@
       "properties": {
         "AmeCode": "24201",
         "type": "C",
-        "elems": "11112100",
+        "elems": "11112110",
         "alt": 53,
         "kjName": "鶉",
         "knName": "ウズラ",
@@ -6093,7 +6093,7 @@
       "properties": {
         "AmeCode": "33576",
         "type": "C",
-        "elems": "11110000",
+        "elems": "11110100",
         "alt": 90,
         "kjName": "花巻",
         "knName": "ハナマキ：花巻空港",
@@ -8734,7 +8734,7 @@
       "properties": {
         "AmeCode": "41172",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 561,
         "kjName": "日光東町",
         "knName": "ニッコウヒガシマチ",
@@ -8753,7 +8753,7 @@
       "properties": {
         "AmeCode": "41181",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 225,
         "kjName": "塩谷",
         "knName": "シオヤ",
@@ -8886,7 +8886,7 @@
       "properties": {
         "AmeCode": "41331",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 91,
         "kjName": "真岡",
         "knName": "モオカ",
@@ -8924,7 +8924,7 @@
       "properties": {
         "AmeCode": "41361",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 68,
         "kjName": "佐野",
         "knName": "サノ",
@@ -9076,7 +9076,7 @@
       "properties": {
         "AmeCode": "42186",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 354,
         "kjName": "中之条",
         "knName": "ナカノジョウ",
@@ -9228,7 +9228,7 @@
       "properties": {
         "AmeCode": "42326",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 375,
         "kjName": "西野牧",
         "knName": "ニシノマキ",
@@ -9266,7 +9266,7 @@
       "properties": {
         "AmeCode": "42366",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 23,
         "kjName": "館林",
         "knName": "タテバヤシ",
@@ -9304,7 +9304,7 @@
       "properties": {
         "AmeCode": "43051",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 128,
         "kjName": "寄居",
         "knName": "ヨリイ",
@@ -9380,7 +9380,7 @@
       "properties": {
         "AmeCode": "43126",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 12,
         "kjName": "久喜",
         "knName": "クキ",
@@ -9475,7 +9475,7 @@
       "properties": {
         "AmeCode": "43171",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 44,
         "kjName": "鳩山",
         "knName": "ハトヤマ",
@@ -9646,7 +9646,7 @@
       "properties": {
         "AmeCode": "44112",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 123,
         "kjName": "八王子",
         "knName": "ハチオウジ",
@@ -9665,7 +9665,7 @@
       "properties": {
         "AmeCode": "44116",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 59,
         "kjName": "府中",
         "knName": "フチュウ",
@@ -10425,7 +10425,7 @@
       "properties": {
         "AmeCode": "46091",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 18,
         "kjName": "海老名",
         "knName": "エビナ",
@@ -10748,7 +10748,7 @@
       "properties": {
         "AmeCode": "48216",
         "type": "C",
-        "elems": "11112100",
+        "elems": "11112110",
         "alt": 1253,
         "kjName": "菅平",
         "knName": "スガダイラ",
@@ -10824,7 +10824,7 @@
       "properties": {
         "AmeCode": "48321",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 958,
         "kjName": "東御",
         "knName": "トウミ",
@@ -11451,7 +11451,7 @@
       "properties": {
         "AmeCode": "49086",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 341,
         "kjName": "韮崎",
         "knName": "ニラサキ",
@@ -11489,7 +11489,7 @@
       "properties": {
         "AmeCode": "49151",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 394,
         "kjName": "勝沼",
         "knName": "カツヌマ",
@@ -11565,7 +11565,7 @@
       "properties": {
         "AmeCode": "49196",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 552,
         "kjName": "古関",
         "knName": "フルセキ",
@@ -12971,7 +12971,7 @@
       "properties": {
         "AmeCode": "52406",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 233,
         "kjName": "金山",
         "knName": "カナヤマ",
@@ -13009,7 +13009,7 @@
       "properties": {
         "AmeCode": "52461",
         "type": "C",
-        "elems": "11112000",
+        "elems": "11112010",
         "alt": 68,
         "kjName": "美濃",
         "knName": "ミノ",
