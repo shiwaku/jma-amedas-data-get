@@ -23661,15 +23661,15 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          129.495,
-          28.378333333333334
+          129.49333333333334,
+          28.385
         ]
       },
       "properties": {
-        "AmeCode": "88836",
+        "AmeCode": "88837",
         "type": "B",
         "elems": "11111011",
-        "alt": 3,
+        "alt": 4,
         "kjName": "名瀬",
         "knName": "ナゼ",
         "enName": "Naze"
