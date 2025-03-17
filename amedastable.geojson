@@ -8525,7 +8525,7 @@
       "properties": {
         "AmeCode": "40336",
         "type": "C",
-        "elems": "11111100",
+        "elems": "11111110",
         "alt": 25,
         "kjName": "つくば",
         "knName": "ツクバ",
@@ -22901,17 +22901,17 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          131.25,
-          31.636666666666667
+          131.26666666666668,
+          31.641666666666666
         ]
       },
       "properties": {
         "AmeCode": "87461",
         "type": "C",
         "elems": "01000000",
-        "alt": 130,
-        "kjName": "深瀬",
-        "knName": "フカセ",
+        "alt": 160,
+        "kjName": "酒谷",
+        "knName": "サカタニ",
         "enName": "Fukase"
       }
     },
